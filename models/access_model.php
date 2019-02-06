@@ -16,7 +16,7 @@ class access_model extends base_model {
         $ci_session_id = $this->session->userdata('session_id');
         
        
-        $ip = "";
+        $ip = "172.47.41.10";
         $dbData["status"] = 1;
         $dbData["user_type"] = "customer";
     	$dbData["create_time"] = time();
@@ -65,5 +65,26 @@ class access_model extends base_model {
     public function  generateAccessToken($accessToken="access_",$user_id){
         $token = sha1($accessToken."-".$user_id."-".currentTimeMilisec()."-".rand(0,10000));
         return $token;
+    }
+    public function currentAccessToken(){
+        $access_token = safe_request("access_token");
+        if($access_token==""){
+            $headerData = getallheaders();
+            $access_token = nTob(@$headerData["access_token"]);
+        } if($access_token==""){
+            return false;
+        }
+      return  $access_token;
+    }
+    public function getEnableCustomerByAccessToken($access_token){
+        $db = $this->getDb();
+        $db->where('token',$access_token);
+        $time = time()+60;
+        $db->where('create_time <',$time );
+        $query = $db->get('access');
+        if($query->row()){
+            return $query->row()->user_id;
+        }
+        return false;
     }
 }
