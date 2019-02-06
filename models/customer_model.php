@@ -107,13 +107,13 @@ public $currentCustomerId=null;
    }
    public function currentCustomerId(){
         $this->load->model("access_model");
-        $access_token = $this->access_model->CurrentAccessToken();
-        $this->load->model("access_model");
-        $userData = $this->access_model->getEnableCustomerByAccessToken($access_token);
-        if(!$userData){
+        $access_token = $this->access_model->currentAccessToken();
+     
+        $customer_id = $this->access_model->getEnableCustomerByAccessToken($access_token);
+        if(!$customer_id){
         	return false;
         }
-        return intval(@$userData["user_id"]);
+        return $customer_id;
    }
 }
 
