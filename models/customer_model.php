@@ -82,7 +82,7 @@ public $currentCustomerId=null;
 
         $status = intval(@$dbData["status"]);
         if($status<=0){
-			$status = 2;
+			$status = 1;
 		}
         $dbData["status"] = $status;
         // $this->load->helper('date');
