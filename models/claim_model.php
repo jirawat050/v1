@@ -15,7 +15,7 @@ class claim_model extends base_model {
     $dbData["otp"] = substr($shuffled ,0,6);
     $dbData["user_id"] =$customer_id;
     $ci_session_id = $this->session->userdata('session_id');
-    $ip = "172.47.41.10";
+
     $dbData["status"] = 1;
     $dbData["user_type"] = "customer";
     $dbData["create_time"] = time();
