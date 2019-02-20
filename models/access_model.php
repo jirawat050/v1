@@ -79,7 +79,7 @@ class access_model extends base_model {
     public function getEnableCustomerByAccessToken($access_token){
         $db = $this->getDb();
         $db->where('token',$access_token);
-        $time = time()+60;
+        $time = time()+120;
         $db->where('create_time <',$time );
         $query = $db->get('access');
         if($query->row()){
