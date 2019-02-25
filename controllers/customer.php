@@ -38,13 +38,13 @@ class customer extends base_controller {
         }
       
         $datasend = array(
-			'first_name'    =>  $first_name,
-			'last_name'    =>  $last_name,
-			'gender'    =>  $gender,
-			'password'    =>  $password,
-            'email'    =>  $email,
-            'phone'    =>  $phone,
-            'status'    =>  $status
+	'first_name'    =>  $first_name,
+	'last_name'    =>  $last_name,
+	'gender'    =>  $gender,
+	'password'    =>  $password,
+        'email'    =>  $email,
+        'phone'    =>  $phone,
+         'status'    =>  $status
 
         );
       
