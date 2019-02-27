@@ -8,8 +8,8 @@ class claim_model extends base_model {
     }
     public function createClaimData($customer_id){
        
-        $str = '1234567890';
-       $shuffled = str_shuffle($str);
+    $str = '1234567890';
+    $shuffled = str_shuffle($str);
     $dbData =array();
     $dbData["token"] = $this->generateToken($customer_id);
     $dbData["otp"] = substr($shuffled ,0,6);
