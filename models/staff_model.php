@@ -10,8 +10,8 @@
             $field["gender"] = "staff.gender";
             $field["email"] = "staff.email";
             $field["username"] = "staff.username";
+            $field["mobile_phone"] = "staff.mobile_phone";
             $field["reg_status"] = "staff.reg_status";
-            $field["phone"] = "staff.phone";
             $field["status"] = "staff.status";
             return $field;
         }
@@ -45,6 +45,7 @@
 
    
         public function checkDuplicateEmail($email,$staff_id){
+            
             $db = $this->getDb();
             $db->where('email',$email);
             $query = $db->get('staff');
@@ -60,19 +61,24 @@
         }
 
         public function checkDuplicateUsername($username,$staff_id) {
-            $db = $this->getDb();
-            $db->where('username',$username);
-            $query = $db->get('staff');
-            $count_row = $query->num_rows();
-            if ($count_row >= 1) {
-                $match= $this->matcheUsernamestaff($username,$staff_id);
-                if(!$match){
-                    return FALSE; // here I change TRUE to false.
-                }
-                return true;
+            $match_username = $this->checkDuplicateEmail($username,$staff_id);
+            if(!$match_username){
+                return false;
             }
-            return true; 
-            
+            else{
+                $db = $this->getDb();
+                $db->where('username',$username);
+                $query = $db->get('staff');
+                $count_row = $query->num_rows();
+                if ($count_row >= 1) {
+                    $match= $this->matcheUsernamestaff($username,$staff_id);
+                    if(!$match){
+                        return FALSE; // here I change TRUE to false.
+                    }
+                    return true;
+                }
+                return true; 
+            }
         }
         public function checkValidpassword($password) {
         
