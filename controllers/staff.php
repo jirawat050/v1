@@ -20,7 +20,7 @@ class staff extends base_controller {
         $this->form_validation->set_rules('gender','trim|required');
         $this->form_validation->set_rules('email','trim|required|');
         $this->form_validation->set_rules('password','trim|required');
-        $this->form_validation->set_rules('phone','trim|required');
+        $this->form_validation->set_rules('mobile_phone','trim|required');
         $this->form_validation->set_rules('status','trim|required');
         $this->form_validation->check(); 
         //RECEIVE safe_request(), safe_post();
@@ -29,7 +29,7 @@ class staff extends base_controller {
          $gender = safe_post("gender");
          $email = safe_post("email");
          $password = safe_post("password");
-         $phone = safe_post("phone");
+         $phone = safe_post("mobile_phone");
          $status = safe_post("status");
         //business logic
         $this->load->model("staff_model");
@@ -47,7 +47,7 @@ class staff extends base_controller {
 			'gender'    =>  $gender,
 			'password'    =>  $password,
             'email'    =>  $email,
-            'phone'    =>  $phone,
+            'mobile_phone'    =>  $phone,
             'status'    =>  $status
         );
         $status = $this->staff_model->addNew($datasend);
@@ -126,7 +126,7 @@ class staff extends base_controller {
         $this->form_validation->set_rules('username','trim|required');
         $this->form_validation->set_rules('gender','trim|required');
         $this->form_validation->set_rules('email','trim|valid_email');
-        $this->form_validation->set_rules('phone','trim|required');
+        $this->form_validation->set_rules('mobile_phone','trim|required');
         $this->form_validation->check(); 
 
         $first_name = safe_post("first_name");
@@ -134,7 +134,7 @@ class staff extends base_controller {
         $username = safe_post("username");
         $gender = safe_post("gender");
         $email = safe_post("email");
-        $phone = safe_post("phone");
+        $phone = safe_post("mobile_phone");
       
         $staff_id = $this->staff_model->onlyStaff();
         $check = $this->staff_model->checkDuplicateEmail($email,$staff_id);
@@ -151,7 +151,7 @@ class staff extends base_controller {
             'gender' => $gender,
             'email' => $email,
             'username' => $username,
-            'phone' =>  $phone
+            'mobile_phone' =>  $phone
         );
         if(!$staff_id){
             resBad(array(),"cannot login");
