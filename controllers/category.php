@@ -113,7 +113,7 @@
                 resBad(array(),"cannot find id");
             }
             $this->category_model->deleteById($category_id);
-            resGood(); 
+            resGood("success"); 
 
         }
      
